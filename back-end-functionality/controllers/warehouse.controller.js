@@ -1,4 +1,4 @@
-const Warehouse = require('../models/Warehouse.model.js');
+const Warehouse = require('../models/warehouse.model.js');
 
 const findAllWarehouses = async () => await Warehouse.find().populate('inventory');
 

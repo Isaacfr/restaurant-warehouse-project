@@ -17,7 +17,7 @@ const Schema = mongoose.Schema;
 
 const itemSchema = new Schema({
     item_id : String,
-    warehouse_id : Number, //I want the warehouse_id to reference which warehouse it is in
+    warehouse_id : Number, //I want the warehouse_id to reference which warehouse it is in, may change this to return name
     description: String,
     quantity : Number,
     unit : String,
