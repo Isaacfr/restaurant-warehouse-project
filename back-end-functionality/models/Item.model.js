@@ -16,13 +16,13 @@ const Schema = mongoose.Schema;
  */
 
 const itemSchema = new Schema({
-    item_id : String,
-    warehouse_id : Number, //I want the warehouse_id to reference which warehouse it is in, may change this to return name
+    item_id: String,
+    // warehouse_id: [{type: mongoose.Types.ObjectId, ref:"Warehouse"}],
     description: String,
-    quantity : Number,
-    unit : String,
-    unit_cost : Number,
-    total_cost : Number
+    quantity: Number,
+    unit: String,
+    unit_cost: Number,
+    total_cost: Number
 });
 
 const Item = mongoose.model('Warehouse Item', itemSchema, 'Warehouse Item');

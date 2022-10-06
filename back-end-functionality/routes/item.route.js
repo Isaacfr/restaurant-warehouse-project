@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
 });
 
 //Update an Item
-router.put('/:id', validateItemId, async (req, res) => {
+router.put('/:id', validateObjectId, async (req, res) => {
     try {
         await updateItem(req.params.id, req.body);
         res.send();
