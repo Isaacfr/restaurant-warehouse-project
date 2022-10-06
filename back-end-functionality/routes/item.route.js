@@ -11,6 +11,10 @@ const validateObjectId = (req, res, next) => {
     }
 }
 
+calculateTotalCost(){
+    
+}
+
 //Read All Items 
 router.get('/', async (req, res) =>{
     const items = await findAllItems();
@@ -21,7 +25,10 @@ router.get('/', async (req, res) =>{
 router.get('/:id', async (req, res) =>{
     try{
         const items = await findItemById(req.params.id);
-        res.json(items);
+        //res.json(items);
+        res.json(items.description); //18-inch wok - name
+        // const info = await res.json();
+        // return info;
     }
     catch{
         console.log(err);
