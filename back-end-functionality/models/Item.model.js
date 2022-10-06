@@ -16,7 +16,7 @@ const Schema = mongoose.Schema;
  */
 
 const itemSchema = new Schema({
-    item_id: String,
+    // item_id: String,
     // warehouse_id: [{type: mongoose.Types.ObjectId, ref:"Warehouse"}],
     description: String,
     quantity: Number,
