@@ -95,7 +95,6 @@ export const ItemForm = ({setItemList}) => {
                         onChange={() => {
                             totalcountRef.current = itemData.unit_cost * itemData.quantity;
                             setItemData({...itemData, total_cost: itemData.total_cost});}}
-
                         value = {totalcountRef.current = itemData.unit_cost * itemData.quantity}
                         placeholder="Ex: Total Cost"
                         
