@@ -24,6 +24,8 @@ export const ItemList = () =>{
    }, []);
 
     return(
+        <>
+        <ItemForm setItemList={setItemList} />
         <table>
             <thead>
                 <tr>
@@ -37,5 +39,6 @@ export const ItemList = () =>{
                 {itemList.map(item => <Item key={item._id} item={item}/>)}
             </tbody>
         </table>
+        </>
     )
 }
