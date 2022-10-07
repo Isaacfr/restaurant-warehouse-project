@@ -20,7 +20,6 @@ const itemSchema = new Schema({
     // warehouse_id: [{type: mongoose.Types.ObjectId, ref:"Warehouse"}],
     description: String,
     quantity: Number,
-    unit: String,
     unit_cost: Number,
     total_cost: Number
 });

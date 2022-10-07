@@ -2,12 +2,11 @@ import {useState, useEffect} from 'react';
 import axios from 'axios';
 import { ItemForm } from '../Forms/ItemForm';
 
-export const Item = ({item: {description, quantity, unit, unit_cost, total_cost}}) =>{
+export const Item = ({item: {description, quantity, unit_cost, total_cost}}) =>{
     return(
         <tr>
             <td>{description}</td>
             <td>{quantity}</td>
-            <td>{unit}</td>
             <td>{unit_cost}</td>
             <td>{total_cost}</td>
         </tr>
@@ -30,7 +29,6 @@ export const ItemList = () =>{
                 <tr>
                     <th>Item Description</th>
                     <th>Quantity</th>
-                    <th>Unit</th>
                     <th>Unit Cost</th>
                     <th>Total Cost</th>
                 </tr>

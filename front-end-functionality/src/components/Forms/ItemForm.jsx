@@ -15,7 +15,6 @@ export const ItemForm = ({setItemList}) => {
     const [itemData, setItemData] = useState({
         description : '',
         quantity: 0,
-        unit: null, //checkbox
         unit_cost: 0,
         total_cost: 0
     })
@@ -36,7 +35,6 @@ export const ItemForm = ({setItemList}) => {
             const res = await axios.post('http://localhost:9000/items',{
                 description: itemData.description,
                 quantity: itemData.quantity,
-                unit: itemData.unit,
                 unit_cost: itemData.unit_cost,
                 total_cost: itemData.total_cost
             });
@@ -74,14 +72,6 @@ export const ItemForm = ({setItemList}) => {
                         onChange={e => setItemData({...itemData, quantity: e.target.value})}
                         placeholder="Ex: 1"
                     />
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label htmlFor="unit">Unit: </label>
-                    <select id="unit" onChange={e => setItemData({...itemData, unit: e.target.value})}>
-                        {unitTypes}
-                    </select>
                 </div>
             </div>
             <div>
