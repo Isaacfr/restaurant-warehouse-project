@@ -11,9 +11,9 @@ const validateObjectId = (req, res, next) => {
     }
 }
 
-calculateTotalCost(){
-    
-}
+// calculateTotalCost(){
+
+// }
 
 //Read All Items 
 router.get('/', async (req, res) =>{

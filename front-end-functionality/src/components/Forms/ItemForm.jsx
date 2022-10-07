@@ -2,26 +2,29 @@ import {useState} from "react";
 import axios from "axios";
 
 const unitTypes = [
-    <option>Each</option>,
-    <option>Package(6ct)</option>,
-    <option>Box(12ct)</option>,
-    <option>Custom Container</option>
+    <option value="1">Each</option>,
+    <option value="6">Package(6ct)</option>,
+    <option value="12">Box(12ct)</option>
 ]
 
 export const ItemForm = ({setItemList}) => {
+    
+    //const [totalcost, setTotalCost] = useState(0);
+    //const solveTotalCost = (unit, unitCost) => setTotalCost(totalCost = unit * unitCost);
+
     const [itemData, setItemData] = useState({
-        itemName : '',
+        description : '',
         quantity: 0,
-        unit: '', //checkbox
+        unit: null, //checkbox
         unit_cost: 0,
         total_cost: 0
     })
 
     const handleClear = () => {
         setItemData({
-            itemName : '',
+            description : '',
             quantity: 0,
-            unit: '', //checkbox
+            unit: null, //checkbox
             unit_cost: 0,
             total_cost: 0
         })
@@ -31,15 +34,86 @@ export const ItemForm = ({setItemList}) => {
         event.preventDefault();
         try{
             const res = await axios.post('http://localhost:9000/items',{
-                description: itemData.itemName,
+                description: itemData.description,
                 quantity: itemData.quantity,
                 unit: itemData.unit,
                 unit_cost: itemData.unit_cost,
-                total_cost: itemData.unit
-            })
+                total_cost: itemData.total_cost
+            });
+            console.log(res.data);
+
+            console.log(itemData.unit);
+
+            setItemList(itemList => [...itemList, res.data]);
+
+            event.target.reset();
+            handleClear();
         }
         catch(err){
-            
+            console.log(err);
         }
     }
+
+    return(
+        <form onSubmit={handleSubmit}>
+            <div>
+                <div>
+                    <label htmlFor="item-name">Item Name: </label>
+                    <input
+                        value={itemData.description}
+                        onChange={e => setItemData({...itemData, description: e.target.value})}
+                        placeholder="Ex: Item Name"
+                    />
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label htmlFor="">Quantity: </label>
+                    <input
+                        value={itemData.quantity}
+                        onChange={e => setItemData({...itemData, quantity: e.target.value})}
+                        placeholder="Ex: 1"
+                    />
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label htmlFor="unit">Unit: </label>
+                    <select id="unit" onChange={e => setItemData({...itemData, unit: e.target.value})}>
+                        {unitTypes}
+                    </select>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label htmlFor="unit-cost">Unit Cost: $</label>
+                    <input
+                        value={itemData.unit_cost}
+                        onChange={e => setItemData({...itemData, unit_cost: e.target.value})}
+                        placeholder="Ex: Unit Cost"
+                    />
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label htmlFor="total-cost">Total Cost: $</label>
+                    <input
+                        value={itemData.total_cost}
+                        onChange={e => setItemData({...itemData, total_cost: e.target.value})}
+                        placeholder="Ex: Total Cost"
+                        
+                        disabled
+                    />
+                    {/* <input onChange={e =>{
+                        e.target.value = itemData.unit_cost * itemData.unit;
+                        setItemData({...itemData, total_cost: e.target.value});
+                    }} placeholder="0" disabled></input> */}
+                </div>
+            </div>
+            <div>
+                <button type='reset' onClick={handleClear}>Clear</button>
+                <button>Submit</button>
+            </div>
+        </form>
+    )
 }
