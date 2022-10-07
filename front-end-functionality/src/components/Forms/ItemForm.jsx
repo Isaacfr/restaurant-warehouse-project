@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {useState, useRef} from "react";
 import axios from "axios";
 
 const unitTypes = [
@@ -12,6 +12,8 @@ export const ItemForm = ({setItemList}) => {
     //const [totalcost, setTotalCost] = useState(0);
     //const solveTotalCost = (unit, unitCost) => setTotalCost(totalCost = unit * unitCost);
 
+    const totalcountRef = useRef(0);
+
     const [itemData, setItemData] = useState({
         description : '',
         quantity: 0,
@@ -23,7 +25,6 @@ export const ItemForm = ({setItemList}) => {
         setItemData({
             description : '',
             quantity: 0,
-            unit: null, //checkbox
             unit_cost: 0,
             total_cost: 0
         })
@@ -36,7 +37,7 @@ export const ItemForm = ({setItemList}) => {
                 description: itemData.description,
                 quantity: itemData.quantity,
                 unit_cost: itemData.unit_cost,
-                total_cost: itemData.total_cost
+                total_cost: itemData.unit_cost * itemData.quantity
             });
             console.log(res.data);
 
@@ -69,7 +70,8 @@ export const ItemForm = ({setItemList}) => {
                     <label htmlFor="">Quantity: </label>
                     <input
                         value={itemData.quantity}
-                        onChange={e => setItemData({...itemData, quantity: e.target.value})}
+                        onChange={e => {setItemData({...itemData, quantity: e.target.value});
+                    }}
                         placeholder="Ex: 1"
                     />
                 </div>
@@ -79,7 +81,9 @@ export const ItemForm = ({setItemList}) => {
                     <label htmlFor="unit-cost">Unit Cost: $</label>
                     <input
                         value={itemData.unit_cost}
-                        onChange={e => setItemData({...itemData, unit_cost: e.target.value})}
+                        onChange={e => {
+                            setItemData({...itemData, unit_cost: e.target.value});
+                        }}
                         placeholder="Ex: Unit Cost"
                     />
                 </div>
@@ -88,11 +92,14 @@ export const ItemForm = ({setItemList}) => {
                 <div>
                     <label htmlFor="total-cost">Total Cost: $</label>
                     <input
-                        value={itemData.total_cost}
-                        onChange={e => setItemData({...itemData, total_cost: e.target.value})}
+                        onChange={() => {
+                            totalcountRef.current = itemData.unit_cost * itemData.quantity;
+                            setItemData({...itemData, total_cost: itemData.total_cost});}}
+
+                        value = {totalcountRef.current = itemData.unit_cost * itemData.quantity}
                         placeholder="Ex: Total Cost"
                         
-                        disabled
+                        readOnly
                     />
                     {/* <input onChange={e =>{
                         e.target.value = itemData.unit_cost * itemData.unit;
