@@ -1,8 +1,12 @@
 //use import here
-import { ItemList } from "./components/List/ItemList";
+import { Item, ItemList } from "./components/List/ItemList";
+import { ItemForm } from "./components/Forms/ItemForm";
 
 export const App = () =>{
     return (
-        <ItemList></ItemList>    
+        <div>
+            <ItemForm></ItemForm>
+            <ItemList></ItemList>
+        </div>
     )
 }
