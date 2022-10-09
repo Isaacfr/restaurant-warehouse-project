@@ -1,14 +1,20 @@
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 import { ItemForm } from '../Forms/ItemForm';
+import { DeleteButton, EditModeButton } from '../Buttons';
 
-export const Item = ({item: {description, quantity, unit_cost, total_cost}}) =>{
+export const Item = ({item: {_id, description, quantity, unit_cost, total_cost}}) =>{
+    // : {item_id, description, quantity, unit_cost, total_cost}
+    // console.log(_id);
+    
     return(
         <tr>
             <td>{description}</td>
             <td>{quantity}</td>
             <td>{unit_cost}</td>
             <td>{total_cost}</td>
+            {/* <td><EditModeButton id={id}/></td> */}
+            <td><DeleteButton id={_id}/></td>
         </tr>
     )
 }
