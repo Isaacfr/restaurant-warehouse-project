@@ -3,7 +3,7 @@ const { stringify } = require('querystring');
 const Schema = mongoose.Schema;
 
 const itemSchema = new Schema({
-    // warehouse_id: [{type: mongoose.Types.ObjectId, ref:"Warehouse"}],
+    warehouse_id: [{type: mongoose.Types.ObjectId, ref:"Warehouse"}],
     item_id: String,
     description: String,
     quantity: Number,

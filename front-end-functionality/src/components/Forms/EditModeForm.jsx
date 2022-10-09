@@ -72,8 +72,16 @@ export const EditModeForm = ({itemId}) => {
     }
 
     const handlePost = async(event) => {
+        event.preventDefault();
         try{
-            console.log('hi');
+            const res = await axios.put(`http://localhost:9000/items/${id}`,{
+                itemId : itemData._id,
+                description: itemData.description,
+                quantity: itemData.quantity,
+                unit_cost: itemData.unit_cost,
+                total_cost: itemData.unit_cost * itemData.quantity
+            });
+            window.location.reload(false);
         }
         catch(err){
             console.log(err);
