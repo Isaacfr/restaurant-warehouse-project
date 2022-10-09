@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const warehouseSchema = new Schema({
-    warehouse_id : Number,
+    warehouse_number : Number,
     warehouse_total_space : Number,
     warehouse_vacant_space : Number,
     inventory: {
