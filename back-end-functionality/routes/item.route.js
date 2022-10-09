@@ -26,7 +26,7 @@ router.get('/:id', async (req, res) =>{
     try{
         const items = await findItemById(req.params.id);
         //res.json(items);
-        res.json(items.description); //18-inch wok - name
+        res.json(items); //18-inch wok - name
         // const info = await res.json();
         // return info;
     }

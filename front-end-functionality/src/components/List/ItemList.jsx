@@ -13,7 +13,7 @@ export const Item = ({item: {_id, description, quantity, unit_cost, total_cost}}
             <td>{quantity}</td>
             <td>{unit_cost}</td>
             <td>{total_cost}</td>
-            {/* <td><EditModeButton id={id}/></td> */}
+            <td><EditModeButton id={_id}/></td>
             <td><DeleteButton id={_id}/></td>
         </tr>
     )

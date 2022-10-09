@@ -1,3 +1,4 @@
+import {useLocation} from "react-router-dom";
 import {useState, useRef, useEffect} from "react";
 import axios from "axios";
 
@@ -7,65 +8,103 @@ import axios from "axios";
 //     <option value="12">Box(12ct)</option>
 // ]
 
+// function obtainId () {
+//     const location = useLocation();
+//     const {id} = location.state;
+//     return id;
+// }
+
 export const EditModeForm = ({itemId}) => {
     
+    const location = useLocation();
+    const {id} = location.state;
     //const [totalcost, setTotalCost] = useState(0);
     //const solveTotalCost = (unit, unitCost) => setTotalCost(totalCost = unit * unitCost);
 
+    //console.log(id);
     const totalcountRef = useRef(0);
 
-    const [itemList, setItemList] = useState([]);
-
-    useEffect(() =>{
-     axios.get(`http://localhost:9000/items/${itemId}`)
-     .then(res => {setItemList(res.data); console.log(res.data);})
-     .catch(err => console.log(err)); //change this to alert message? test for refreshing page
-    }, []);
-
-    const [itemData, setItemData] = useState({
+     const [itemData, setItemData] = useState({
         itemId: '',
         description : '',
         quantity: 0,
         unit_cost: 0,
         total_cost: 0
-    })
+     });
 
-    const handleClear = () => {
+    useEffect(() =>{
+     axios.get(`http://localhost:9000/items/${id}`)
+     .then(res => {
         setItemData({
-            itemId: '',
-            description : '',
-            quantity: 0,
-            unit_cost: 0,
-            total_cost: 0
-        })
+            itemId : res.data._id,
+            description: res.data.description,
+            quantity: res.data.quantity,
+            unit_cost: res.data.unit_cost,
+            total_cost: res.data.total_cost
+        });
+    })
+     .catch(err => console.log(err)); //change this to alert message? test for refreshing page
+    }, []);
+
+    const resetData = {
+        itemId : itemData.itemId,
+        description: itemData.description,
+        quantity: itemData.quantity,
+        unit_cost: itemData.unit_cost,
+        total_cost: itemData.total_cost
     }
 
-    const handleSubmit = async(event) => {
+    const handleReset = async(event) => {
         event.preventDefault();
         try{
-            const res = await axios.post('http://localhost:9000/items',{
-                itemId : itemData._id,
-                description: itemData.description,
-                quantity: itemData.quantity,
-                unit_cost: itemData.unit_cost,
-                total_cost: itemData.unit_cost * itemData.quantity
+            const res = await axios.get(`http://localhost:9000/items/${id}`);
+            setItemData({
+            itemId : res.data._id,
+            description: res.data.description,
+            quantity: res.data.quantity,
+            unit_cost: res.data.unit_cost,
+            total_cost: res.data.total_cost
             });
-            console.log(res.data);
-
-            console.log(itemData._id);
-
-            setItemList(itemList => [...itemList, res.data]);
-
-            event.target.reset();
-            handleClear();
         }
         catch(err){
             console.log(err);
         }
     }
 
+    const handlePost = async(event) => {
+        try{
+            console.log('hi');
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+    // const handleSubmit = async(event) => {
+    //     event.preventDefault();
+    //     try{
+    //         const res = await axios.post('http://localhost:9000/items',{
+    //             itemId : itemData._id,
+    //             description: itemData.description,
+    //             quantity: itemData.quantity,
+    //             unit_cost: itemData.unit_cost,
+    //             total_cost: itemData.unit_cost * itemData.quantity
+    //         });
+    //         console.log(res.data);
+
+    //         console.log(itemData._id);
+
+    //         setItemList(itemList => [...itemList, res.data]);
+
+    //         event.target.reset();
+    //         handleClear();
+    //     }
+    //     catch(err){
+    //         console.log(err);
+    //     }
+    // }
+
     return(
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handlePost}>
             <div>
                 <div>
                     <label htmlFor="item-name">Item Name: </label>
@@ -111,14 +150,10 @@ export const EditModeForm = ({itemId}) => {
                         
                         readOnly
                     />
-                    {/* <input onChange={e =>{
-                        e.target.value = itemData.unit_cost * itemData.unit;
-                        setItemData({...itemData, total_cost: e.target.value});
-                    }} placeholder="0" disabled></input> */}
                 </div>
             </div>
             <div>
-                <button type='reset' onClick={handleClear}>Clear</button>
+                <button type='reset' onClick={handleReset}>Reset</button>
                 <button>Submit</button>
             </div>
         </form>

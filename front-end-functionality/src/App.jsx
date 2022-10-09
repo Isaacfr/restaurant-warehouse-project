@@ -4,13 +4,12 @@ import { EditFormPage, ItemPage } from './pages';
 
 export const App = () =>{
     return (
-        <ItemList></ItemList>
-        // <BrowserRouter>
-        //     <ItemList></ItemList>
-        //     <Routes>
-        //          <Route path="/" element={<ItemPage />}/>
-        //          <Route path="/edit" element={<EditFormPage/>}/>
-        //     </Routes>
-        // </BrowserRouter>
+        // <ItemList></ItemList>
+        <BrowserRouter>
+            <Routes>
+                 <Route path="/" element={<ItemPage />}/>
+                 <Route path="/edit" element={<EditFormPage/>}/>
+            </Routes>
+        </BrowserRouter>
     )
 }
