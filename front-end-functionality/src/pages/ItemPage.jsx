@@ -1,7 +1,7 @@
-// import {ItemList} from "./components/List/ItemList";
+import {ItemList} from "../components/List/ItemList";
 
-// export const ItemPage = () => {
-//     return(
-//         <ItemList></ItemList>
-//     );
-// }
+export const ItemPage = () => {
+    return(
+        <ItemList></ItemList>
+    );
+}

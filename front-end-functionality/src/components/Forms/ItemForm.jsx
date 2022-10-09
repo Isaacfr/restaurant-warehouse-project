@@ -103,10 +103,6 @@ export const ItemForm = ({setItemList}) => {
                         
                         readOnly
                     />
-                    {/* <input onChange={e =>{
-                        e.target.value = itemData.unit_cost * itemData.unit;
-                        setItemData({...itemData, total_cost: e.target.value});
-                    }} placeholder="0" disabled></input> */}
                 </div>
             </div>
             <div>
