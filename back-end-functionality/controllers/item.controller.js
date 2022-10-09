@@ -16,8 +16,6 @@ const findItemById = async id => {
     }
 };
 
-//Add a function that would look for an item and return all items from different warehouses 
-
 const createItem = async itemToSave => {
     try {
         const item = new Item(itemToSave);

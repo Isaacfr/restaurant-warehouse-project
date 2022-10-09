@@ -1,5 +1,7 @@
 const router = require('express').Router();
+const { findItemById } = require('../controllers/item.controller.js');
 const { findAllWarehouses, createWarehouse } = require('../controllers/warehouse.controller.js');
+const mongoose = require('mongoose');
 
 // Find all Warehouses
 router.get('/', async (req, res) => {
@@ -10,6 +12,20 @@ router.get('/', async (req, res) => {
         res.status(500).json(err);
     }
 });
+
+router.get('/:id', async(req, res) =>{
+    try{
+        const warehouse = await findWarehouseById(req.params.id);
+        res.json(warehouse);
+    }
+    catch(err){
+        console.log(err);
+        res.status(err?.status ?? 500).json(err);
+    }
+})
+
+//router.put
+//router.delete
 
 //Create a new Warehouse
 router.post('/', async (req, res) => {
