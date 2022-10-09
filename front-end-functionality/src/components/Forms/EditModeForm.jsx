@@ -1,4 +1,4 @@
-import {useState, useRef} from "react";
+import {useState, useRef, useEffect} from "react";
 import axios from "axios";
 
 // const unitTypes = [
@@ -7,12 +7,20 @@ import axios from "axios";
 //     <option value="12">Box(12ct)</option>
 // ]
 
-export const ItemForm = ({setItemList}) => {
+export const EditModeForm = ({itemId}) => {
     
     //const [totalcost, setTotalCost] = useState(0);
     //const solveTotalCost = (unit, unitCost) => setTotalCost(totalCost = unit * unitCost);
 
     const totalcountRef = useRef(0);
+
+    const [itemList, setItemList] = useState([]);
+
+    useEffect(() =>{
+     axios.get(`http://localhost:9000/items/${itemId}`)
+     .then(res => {setItemList(res.data); console.log(res.data);})
+     .catch(err => console.log(err)); //change this to alert message? test for refreshing page
+    }, []);
 
     const [itemData, setItemData] = useState({
         itemId: '',

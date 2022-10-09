@@ -1,11 +1,16 @@
-//use import here
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { Item, ItemList } from "./components/List/ItemList";
-import { ItemForm } from "./components/Forms/ItemForm";
+import { EditFormPage, ItemPage } from './pages';
 
 export const App = () =>{
     return (
-        <div>
-            <ItemList></ItemList>
-        </div>
+        <ItemList></ItemList>
+        // <BrowserRouter>
+        //     <ItemList></ItemList>
+        //     <Routes>
+        //          <Route path="/" element={<ItemPage />}/>
+        //          <Route path="/edit" element={<EditFormPage/>}/>
+        //     </Routes>
+        // </BrowserRouter>
     )
 }
