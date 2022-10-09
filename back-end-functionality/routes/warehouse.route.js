@@ -33,7 +33,6 @@ router.get('/:id', async(req, res) =>{
 })
 
 //router.put
-
 router.put('/:id', validateObjectId, async (req, res) => {
     try {
         await updateWarehouseById(req.params.id, req.body);
@@ -43,6 +42,8 @@ router.put('/:id', validateObjectId, async (req, res) => {
     }
 });
 
+
+//router.delete
 router.delete('/:id', validateObjectId, async (req, res) => {
     try {
         await deleteWarehouseById(req.params.id);

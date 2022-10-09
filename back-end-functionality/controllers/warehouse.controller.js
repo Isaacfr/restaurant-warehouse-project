@@ -24,14 +24,17 @@ const createWarehouse = async warehouseToCreate => {
     }
 };
 
-const updateWarehouseById = async (id, itemToUpdate) => {
+
+const updateWarehouseById = async (id, warehouseToUpdate) => {
     try {
-        await Warehouse.findByIdAndUpdate(id, itemToUpdate);
+        await Warehouse.findByIdAndUpdate(id, warehouseToUpdate);
     } catch (err) {
         throw { status: 400, msg: err };
     }
 };
 
-const deleteWarehouseById = async id => await Item.findByIdAndDelete(id);
+
+const deleteWarehouseById = async id => await Warehouse.findByIdAndDelete(id);
+
 
 module.exports = {findAllWarehouses, createWarehouse, findWarehouseById, updateWarehouseById, deleteWarehouseById};
