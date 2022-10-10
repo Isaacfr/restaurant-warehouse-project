@@ -1,5 +1,6 @@
 import {useLocation} from "react-router-dom";
 import {useState, useRef, useEffect} from "react";
+import { BackButton } from "../Buttons";
 import axios from "axios";
 
 
@@ -8,9 +9,6 @@ export const EditModeForm = ({itemId}) => {
     if({itemId} == null){
         itemId = '6343e2bc5e34fd6f914bb770';
     }
-    useEffect(() => {
-
-    })
 
     const location = useLocation();
     const {id} = location.state;
@@ -94,7 +92,11 @@ export const EditModeForm = ({itemId}) => {
         }
     }
     return(
+
         <form onSubmit={handlePost}>
+            <div>
+            <BackButton/>
+            </div>
             <div>
                 <div>
                     <label htmlFor="warehouse-number">Warehouse Number</label>

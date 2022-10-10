@@ -9,7 +9,6 @@ export const App = () =>{
     return (
         <BrowserRouter>
             <AppNav></AppNav>
-            <BackButton/>
             <Routes>
                  <Route path="/" element={<ItemPage />}/>
                  <Route path="/edit" element={<EditFormPage/>}/>
