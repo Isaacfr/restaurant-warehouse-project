@@ -24,6 +24,7 @@ const createWarehouse = async warehouseToCreate => {
     }
 };
 
+
 const updateWarehouseById = async (id, warehouseToUpdate) => {
     try {
         await Warehouse.findOneAndUpdate(id, warehouseToUpdate);
@@ -32,6 +33,8 @@ const updateWarehouseById = async (id, warehouseToUpdate) => {
     }
 };
 
+
 const deleteWarehouseById = async id => await Warehouse.findByIdAndDelete(id);
+
 
 module.exports = {findAllWarehouses, createWarehouse, findWarehouseById, updateWarehouseById, deleteWarehouseById};

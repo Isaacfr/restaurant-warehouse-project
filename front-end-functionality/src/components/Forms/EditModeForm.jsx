@@ -86,6 +86,8 @@ export const EditModeForm = ({itemId}) => {
                 unit_cost: itemData.unit_cost,
                 total_cost: itemData.unit_cost * itemData.quantity
             });
+            window.location.reload(false);
+
         }
         catch(err){
             console.log(err);

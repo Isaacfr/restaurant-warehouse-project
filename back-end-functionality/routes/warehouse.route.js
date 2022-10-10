@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { findAllWarehouses, createWarehouse, findWarehouseById, updateWarehouseById, deleteWarehouseById  } = require('../controllers/warehouse.controller.js');
+const { findAllWarehouses, createWarehouse, findWarehouseById, updateWarehouseById, deleteWarehouseById } = require('../controllers/warehouse.controller.js');
 const mongoose = require('mongoose');
 
 const validateObjectId = (req, res, next) => {
@@ -10,6 +10,7 @@ const validateObjectId = (req, res, next) => {
         next();
     }
 }
+
 // Find all Warehouses
 router.get('/', async (req, res) => {
     try {
@@ -40,6 +41,7 @@ router.put('/:id', validateObjectId, async (req, res) => {
         res.status(err?.status ?? 500).json(err);
     }
 });
+
 
 //router.delete
 router.delete('/:id', validateObjectId, async (req, res) => {
