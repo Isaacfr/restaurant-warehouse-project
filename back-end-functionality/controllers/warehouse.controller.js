@@ -4,7 +4,7 @@ const findAllWarehouses = async () => await Warehouse.find().populate('inventory
 
 const findWarehouseById = async id => {
     try{
-        const warehouse = await Warehouse.findById(id).populate('inventory');
+        const warehouse = await Warehouse.findById(id);
         if(warehouse == null){
             throw{status:204, msg: `Warehouse with id ${id} cannot be found.`};
         }
@@ -27,7 +27,7 @@ const createWarehouse = async warehouseToCreate => {
 
 const updateWarehouseById = async (id, warehouseToUpdate) => {
     try {
-        await Warehouse.findByIdAndUpdate(id, warehouseToUpdate);
+        await Warehouse.findOneAndUpdate(id, warehouseToUpdate);
     } catch (err) {
         throw { status: 400, msg: err };
     }

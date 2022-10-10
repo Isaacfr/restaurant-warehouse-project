@@ -3,12 +3,14 @@ import axios from 'axios';
 import { ItemForm } from '../Forms/ItemForm';
 import { DeleteButton, EditModeButton } from '../Buttons';
 
-export const Item = ({item: {_id, description, quantity, unit_cost, total_cost}}) =>{
+
+export const Item = ({item: {warehouse_number, _id, description, quantity, unit_cost, total_cost}}) =>{
     // : {item_id, description, quantity, unit_cost, total_cost}
     // console.log(_id);
     
     return(
         <tr>
+            <td>{warehouse_number}</td>
             <td>{description}</td>
             <td>{quantity}</td>
             <td>{unit_cost}</td>
@@ -35,6 +37,7 @@ export const ItemList = () =>{
         <table>
             <thead>
                 <tr>
+                    <th>Warehouse Number</th>
                     <th>Item Description</th>
                     <th>Quantity</th>
                     <th>Unit Cost</th>
