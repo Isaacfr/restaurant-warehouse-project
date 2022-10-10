@@ -1,0 +1,339 @@
+/******************************************
+/* CSS
+/*******************************************/
+
+/* Box Model Hack */
+*{
+    box-sizing: border-box;
+    font-size: 2rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+  html{
+    font-size: 1rem;
+  }
+  nav{
+    display: flex;
+    font-size: 0.5rem;
+    justify-content: space-between;
+    height: 100px;
+
+  }
+  nav span{
+       font-weight: bold;
+  }
+    
+  nav ul{
+    display: flex;
+    flex-grow: 2;
+    margin: auto 15%;
+    padding: 0;
+  }
+  nav span{
+    margin: auto 2%;
+  }
+  /* .button{
+    font-weight: normal;
+    color: white;
+    background-color: #3F688C;
+    font-size: 20px;
+    padding: 5%;
+  } */
+  nav form{
+       margin: 2% 2% 2% 1%;
+  }
+  
+  nav ul li{
+    flex: 1;
+    list-style: none;
+    text-align: center;
+  }
+  nav ul li a{
+    font-weight: 100;
+    color: #777777;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  main{
+      background: #a5bec59c;
+  }
+  main section, .collect{
+    display: flex;
+    padding: 2%;
+    margin: 0 5%;
+  }
+  main section{
+       padding-top: 5%;
+  }
+  main section div{
+       flex: 1;
+       padding-right: 10%;
+       padding-top: 3%;
+  }
+  main section form{
+       display: flex;
+       gap: 0;
+  }
+  main section form > input[type=text]{
+       margin: 0;
+       padding: 0.6%;
+       font-size: 20px;
+       width: 80%;
+       background: #bebebe;
+       color: #797979;
+       border: none;
+    }
+    #title p{
+         font-size: 1.7rem;
+         color:#777777;
+    }
+    #title span{
+         color: #797979;
+         text-transform: uppercase;
+         font-size: 1rem;
+    }
+    h1{
+         margin-top: 1%;
+    }
+
+    
+    /* main .button{
+         margin: 0;
+         padding: 0.6%;
+    } */
+
+  img{
+       flex: 1;
+       margin: auto;
+       width: 6%;
+       height: auto;
+  }
+  main ul{
+    display: flex;
+    margin: 2%;
+    padding: 5% 0;
+  }
+  main ul li{
+    margin: 1% 2%;
+    list-style: none;
+  }
+
+  #features *{
+       font-size: 1.2rem;
+       text-decoration: none;
+       color: black;
+       font-weight: bold;
+  }
+
+  #features p{
+       font-weight: normal;
+       color:#777777;
+  }
+
+  .collect{
+       flex-wrap: wrap;
+  }
+
+  h2{
+       font-size: 3rem;
+       padding-right: 50%;
+       margin-bottom: 0;
+  }
+  .collect p{
+       padding-right: 40%;
+       font-size: 1.2rem;
+       color:#777777;
+  }
+
+  .collect #picture-holder{
+       width: 100%;
+       height: 300px; 
+       background-color:  #bebebe;
+  }
+
+  footer{
+       background: #3F688C;
+  }
+
+  footer *{
+       color: white;
+       
+  }
+
+  footer ul{
+       display:flex;
+       justify-content: flex-end;
+       padding: 0;
+       margin: 0;
+       margin-left: 50vw;
+  }
+  footer li{
+    list-style: none;
+    margin: auto;
+  } 
+  footer span{
+    font-size: 1rem;
+    text-align:right;
+    margin-left: 80vw;
+  }
+
+  form{
+    display:flex;
+    
+    align-items: center;
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  form input{
+    display: flex;  
+    }
+
+  button{
+    font-size: 1rem;
+    border: 1px solid lightslategray;
+  }
+  td button{
+    font-size: 20px;
+  }
+
+  tr{
+    border: 4px solid black;
+  }
+
+  td{
+    font-size: 1.3rem;
+    text-align: center;
+    width: 100vw;
+  }
+  th{
+    font-size: 1.5rem;
+  }
+  
+  .navbar{
+    justify-content: center;
+  }
+
+  nav > .nav-section{
+    display: flex;
+    justify-content: center;
+  }
+
+  .nav-item{
+    display: flex;
+    margin: 0 60%;
+  }
+
+  a{
+    text-decoration: none;
+  }
+
+  form{
+    border: 2px solid blue;
+    margin: 0 20%;
+  }
+  form > *{
+    padding: 2% 2%;
+  }
+
+  h1{
+    text-align:center;
+  }
+  /******************************************
+  /* ADDITIONAL STYLES
+  /*******************************************/
+  @media screen and (max-width: 900px){
+    
+    body{
+         font-size: 1.6rem;
+         width: 100%;
+    }
+    nav ul, nav form{
+         display: none;     
+    }
+    header{
+         float: left;
+         width: 100%;
+         border-bottom: 1px solid gray;
+    }
+    nav span{
+        width:100%;
+        margin: 2% 40%;
+        font-size: 2rem;
+        text-align: center;
+    }
+    main section{
+         margin: 0;
+         max-width: 100%;
+         display: flex;
+         flex-wrap: wrap;
+         padding: 5%;
+    }
+    main form{
+         display: flex;
+         flex-wrap: wrap;
+    }
+    main form > input, #title form > input[type=text]{
+         width: 100%;
+         margin: 1% 0;
+    }
+    #title{
+         padding: 1% 0;
+    }
+    img{
+         width: 600px;
+    }
+
+    main form input{
+         width: 100%;
+    }
+
+    #features ul{
+         display: flex;
+         width: 100%;
+         flex-wrap: wrap;
+         margin: 0;
+    }
+    #features ul li{
+         flex-grow: 2;
+         padding: 2%;
+    }
+
+    .collect h2, .collect p{
+         width: 100%;
+         padding: 0;
+    }
+
+    footer span{
+         margin-left: 75vw;
+    }
+}
+
+@media screen and (max-width: 700px){
+    img{
+         width: 70%;
+    }
+    #title form input[type=text]
+    {
+         padding: 1% 2%;
+    }
+    footer ul{
+         margin-left: 40vw;
+    }
+    footer span{
+         margin-left: 70vw;
+    }
+}
+@media screen and (max-width: 530px){
+    footer span{
+         margin-left: 60vw;
+    }
+}
+@media screen and (max-width: 400px){
+    html{
+         font-size: 0.6rem;
+    }
+    
+    #features ul{
+         padding: 1% 10%;
+    }
+}
