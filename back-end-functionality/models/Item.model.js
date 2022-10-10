@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const itemSchema = new Schema({
-    warehouse_number: [{type: mongoose.Types.ObjectId, ref:"Warehouse"}],
+    warehouse_number: String,
     item_id: String,
     description: String,
     quantity: Number,
