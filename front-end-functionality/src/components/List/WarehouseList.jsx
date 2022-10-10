@@ -140,7 +140,16 @@ export const WarehouseList = ({id}) =>{
     .then(res => {
         //setItemList(res.data); 
         console.log(res.data.inventory.inventory_items);
-        setItemList(itemList => [...itemList, res.data.inventory.inventory_items]);
+        const items = res.data.inventory.inventory_items;
+        items.map(item => axios.get(`http://localhost:9000/items/${item}`)
+        .then(
+            res => {
+                setItemList(itemList => [...itemList, res.data]);
+            })
+        .catch(err => console.log(err))
+        );
+        
+        //setItemList(itemList => [...itemList, res.data.inventory.inventory_items]);
     })
     .catch(err => console.log(err)); //change this to alert message? test for refreshing page
    }, []);
