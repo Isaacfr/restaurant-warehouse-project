@@ -1,48 +1,13 @@
 import {useState, useRef, useEffect} from "react";
 import axios from "axios";
-
-// const unitTypes = [
-//     <option value="1">Each</option>,
-//     <option value="6">Package(6ct)</option>,
-//     <option value="12">Box(12ct)</option>
-// ]
-
-export const WarehouseChoice = ({_id}) => {
-    return(
-        <option value={_id}>{_id}</option>
-    )
-}
-
-export const WarehouseNumbersList = () => {
-    const [warehouseNumbers, setWarehouseNumbers] = useState([]);
-
-    useEffect(() =>{
-        axios.get('http://localhost:9000/warehouses')
-        .then(res => {
-            setWarehouseNumbers(res.data);
-        })
-        .catch(err => console.log(err));
-    },[]);
-
-    //console.log(warehouseNumbers);
-    // const warehouseChoices = warehouseNumbers.map(choice => choice.warehouse_number)
-    // console.log(warehouseChoices)
-
-    return(
-        warehouseNumbers.map(warehouse => <WarehouseChoice key={warehouse._id} _id= {warehouse._id}/>)
-    )
-}
+import Button from '@mui/material/Button'
 
 export const ItemForm = ({setItemList}) => {
     
-    //const [totalcost, setTotalCost] = useState(0);
-    //const solveTotalCost = (unit, unitCost) => setTotalCost(totalCost = unit * unitCost);
-
-
     const totalcountRef = useRef(0);
 
     const [itemData, setItemData] = useState({
-        warehouse_number: '',
+        warehouse_number: 1,
         itemId: '',
         description : '',
         quantity: 0,
@@ -52,7 +17,7 @@ export const ItemForm = ({setItemList}) => {
 
     const handleClear = () => {
         setItemData({
-            warehouse_number: '',
+            warehouse_number: 1,
             itemId: '',
             description : '',
             quantity: 0,
@@ -74,30 +39,30 @@ export const ItemForm = ({setItemList}) => {
                 unit_cost: itemData.unit_cost,
                 total_cost: itemData.unit_cost * itemData.quantity
             });
-            setItemData({
-                warehouse_number: itemData.warehouse_number,
-                itemId : itemData._id,
-                description: itemData.description,
-                quantity: itemData.quantity,
-                unit_cost: itemData.unit_cost,
-                total_cost: itemData.unit_cost * itemData.quantity
-            });
-            console.log(res.data);
-            console.log(res.warehouse_number);
-            
-            // try{
-            // const newRes = await axios.put(`http://localhost:9000/warehouses/${res.data.warehouse_number}`
-            // ,{
-            //     // inventory.inventory_items : itemData._id
-            //     inventory: {inventory_items  : [res.data._id]}
-            // });
-            // }
-            // catch(err){
-            //     console.log(err);
-            // }
-        
 
             setItemList(itemList => [...itemList, res.data]);
+
+            let link = "";
+
+            switch(itemData.warehouse_number)
+            {
+                case 1:
+                    link = 'http://localhost:9000/warehouses/63433474050cc9e1ba183995';
+                    break;
+                case 2:
+                    link = 'http://localhost:9000/warehouses/6343355e45544e5984a0f05b';
+                    break;
+                case 3:
+                    link = 'http://localhost:9000/warehouses/6343e1da5e34fd6f914bb76d';
+                    break;
+                default:
+                    link = 'http://localhost:9000/warehouses/63433474050cc9e1ba183995';
+                    break;
+            }
+            
+            const newRes = await axios.put(link,{
+                inventory: {inventory_items  : [itemData._id]}
+            })
 
             event.target.reset();
             handleClear();
@@ -106,29 +71,15 @@ export const ItemForm = ({setItemList}) => {
             console.log(itemData)
             console.log(err);
         }
-        // try{
-        //     const rRes = await axios.get(`http://localhost:9000/warehouses/6343355e45544e5984a0f05b`);
-        //     console.log(rRes.data._id);
-        //     console.log(itemData);
-        //     const newRes = await axios.get(`http://localhost:9000/warehouses/${itemData.warehouse_number}`)
-        //     console.log(newRes.data._id);
-        // }
-        // catch(err){
-        //     console.log(err);
-        // }
     }
-    //setItemData({...itemData, warehouse_number : e.target.value})
     return(
         <form onSubmit={handleSubmit}>
             <div>
                 <div>
                     <label htmlFor="warehouse-number">Warehouse Number</label>
-                    <select id="warehouse_number" 
-                    onChange={e => setItemData({...itemData, warehouse_number : e.options[e.selectedText].target.value})}>
-                        <WarehouseNumbersList/>
-                        {/* <option>6343355e45544e5984a0f05b</option>
-                        <option>63433474050cc9e1ba183995</option> */}
-                    </select>
+                    <input id="warehouse_number" 
+                    onChange={e => setItemData({...itemData, warehouse_number : e.target.value})}> 
+                    </input>
                 </div>
             </div>
             <div>
@@ -179,8 +130,8 @@ export const ItemForm = ({setItemList}) => {
                 </div>
             </div>
             <div>
-                <button type='reset' onClick={handleClear}>Clear</button>
-                <button>Submit</button>
+                <Button type='reset' onClick={handleClear} variant="contained">Clear</Button>
+                <Button variant="contained">Submit</Button>
             </div>
         </form>
     )

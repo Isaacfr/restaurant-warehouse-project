@@ -2,40 +2,34 @@ import {useLocation} from "react-router-dom";
 import {useState, useRef, useEffect} from "react";
 import axios from "axios";
 
-// const unitTypes = [
-//     <option value="1">Each</option>,
-//     <option value="6">Package(6ct)</option>,
-//     <option value="12">Box(12ct)</option>
-// ]
-
-// function obtainId () {
-//     const location = useLocation();
-//     const {id} = location.state;
-//     return id;
-// }
 
 export const EditModeForm = ({itemId}) => {
     
+    if({itemId} == null){
+        itemId = '6343e2bc5e34fd6f914bb770';
+    }
+    useEffect(() => {
+
+    })
+
     const location = useLocation();
     const {id} = location.state;
-    //const [totalcost, setTotalCost] = useState(0);
-    //const solveTotalCost = (unit, unitCost) => setTotalCost(totalCost = unit * unitCost);
-
-    //console.log(id);
     const totalcountRef = useRef(0);
 
      const [itemData, setItemData] = useState({
+        warehouse_number: 1,
         itemId: '',
         description : '',
         quantity: 0,
         unit_cost: 0,
         total_cost: 0
      });
-
+    
     useEffect(() =>{
      axios.get(`http://localhost:9000/items/${id}`)
      .then(res => {
         setItemData({
+            warehouse_number : res.data.warehouse_number,
             itemId : res.data._id,
             description: res.data.description,
             quantity: res.data.quantity,
@@ -43,10 +37,18 @@ export const EditModeForm = ({itemId}) => {
             total_cost: res.data.total_cost
         });
     })
-     .catch(err => console.log(err)); //change this to alert message? test for refreshing page
+     .catch(err=>setItemData({
+        warehouse_number : 1,
+        itemId: '',
+        description : 'Food',
+        quantity: 1,
+        unit_cost: 1,
+        total_cost: 1
+    }));
     }, []);
 
     const resetData = {
+        warehouse_number : itemData.warehouse_number,
         itemId : itemData.itemId,
         description: itemData.description,
         quantity: itemData.quantity,
@@ -59,6 +61,7 @@ export const EditModeForm = ({itemId}) => {
         try{
             const res = await axios.get(`http://localhost:9000/items/${id}`);
             setItemData({
+            warehouse_number : res.warehouse_number,
             itemId : res.data._id,
             description: res.data.description,
             quantity: res.data.quantity,
@@ -76,6 +79,7 @@ export const EditModeForm = ({itemId}) => {
         event.preventDefault();
         try{
             const res = await axios.put(`http://localhost:9000/items/${id}`,{
+                warehouse_number : itemData.warehouse_number,
                 itemId : itemData._id,
                 description: itemData.description,
                 quantity: itemData.quantity,
@@ -87,32 +91,16 @@ export const EditModeForm = ({itemId}) => {
             console.log(err);
         }
     }
-    // const handleSubmit = async(event) => {
-    //     event.preventDefault();
-    //     try{
-    //         const res = await axios.post('http://localhost:9000/items',{
-    //             itemId : itemData._id,
-    //             description: itemData.description,
-    //             quantity: itemData.quantity,
-    //             unit_cost: itemData.unit_cost,
-    //             total_cost: itemData.unit_cost * itemData.quantity
-    //         });
-    //         console.log(res.data);
-
-    //         console.log(itemData._id);
-
-    //         setItemList(itemList => [...itemList, res.data]);
-
-    //         event.target.reset();
-    //         handleClear();
-    //     }
-    //     catch(err){
-    //         console.log(err);
-    //     }
-    // }
-
     return(
         <form onSubmit={handlePost}>
+            <div>
+                <div>
+                    <label htmlFor="warehouse-number">Warehouse Number</label>
+                    <input id="warehouse_number" 
+                    onChange={e => setItemData({...itemData, warehouse_number : e.target.value})}> 
+                    </input>
+                </div>
+            </div>
             <div>
                 <div>
                     <label htmlFor="item-name">Item Name: </label>

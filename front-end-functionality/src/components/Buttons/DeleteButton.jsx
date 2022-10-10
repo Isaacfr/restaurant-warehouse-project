@@ -1,5 +1,6 @@
 import {useState, useRef} from "react";
 import axios from "axios";
+import Button from '@mui/material/Button';
 
 export const DeleteButton = ({id}) => {
     
@@ -18,6 +19,6 @@ export const DeleteButton = ({id}) => {
     }
 
     return(
-        <button onClick={handleDelete}>Delete</button>
+        <Button onClick={handleDelete} variant="outlined">Delete</Button>
     );
 }
