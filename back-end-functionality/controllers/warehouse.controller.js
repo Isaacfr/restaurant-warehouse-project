@@ -5,7 +5,7 @@ const findAllWarehouses = async () => await Warehouse.find().populate('inventory
 const findWarehouseById = async id => {
     try{
         const warehouse = await Warehouse.findById(id).populate('inventory');
-        if(item == null){
+        if(warehouse == null){
             throw{status:204, msg: `Warehouse with id ${id} cannot be found.`};
         }
         return warehouse;

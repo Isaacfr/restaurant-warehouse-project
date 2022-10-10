@@ -45,6 +45,14 @@ export const ItemForm = ({setItemList}) => {
             console.log(res.data);
 
             console.log(itemData._id);
+            
+            const newRes = await axios.put(`http://localhost:9000/warehouses/63433474050cc9e1ba183995`,{
+                // inventory.inventory_items : itemData._id
+                inventory: {
+                inventory_items: itemData._id
+            }
+        });
+
 
             setItemList(itemList => [...itemList, res.data]);
 
