@@ -5,13 +5,7 @@ import Button from '@mui/material/Button';
 
 export const EditModeButton = ({id}) => {
     
-    // const handleEdit = () =>{
-    //     // console.log(id);
-    //     return {id};
-    // }
-    
     return(
-         <Button variant="outlined"><Link to="/edit" state={{id}}>Edit Mode</Link></Button>
-        //<button onClick={handleEdit}>Edit Mode</button>
+         <button><Link to="/edit" state={{id}}>Edit Mode</Link></button>
     );
 }

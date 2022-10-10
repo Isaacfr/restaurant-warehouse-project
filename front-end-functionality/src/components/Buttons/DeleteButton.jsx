@@ -19,6 +19,6 @@ export const DeleteButton = ({id}) => {
     }
 
     return(
-        <Button onClick={handleDelete} variant="outlined">Delete</Button>
+        <button onClick={handleDelete} variant="outlined">Delete</button>
     );
 }

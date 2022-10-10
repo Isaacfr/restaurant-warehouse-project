@@ -5,7 +5,7 @@ export const BackButton = () => {
     let navigate = useNavigate();
     return(
         <>
-            <Button onClick={() => navigate(-1)} variant="contained">Back</Button>
+            <Button id="back-button"onClick={() => navigate(-1)} variant="contained">Back</Button>
         </>
     )
 }
